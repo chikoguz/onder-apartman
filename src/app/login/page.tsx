@@ -63,41 +63,51 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #c7d2fe 100%)' }}>
-      <div className="w-full max-w-sm animate-fadeIn">
+    <div className="hero-gradient min-h-screen flex items-center justify-center p-6">
+      <div className="w-full max-w-sm animate-slideUp">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 mb-5 rounded-2xl shadow-lg" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)' }}>
-            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="inline-flex items-center justify-center w-16 h-16 mb-5 glass rounded-2xl" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
-          <h1 className="text-h2" style={{ color: '#0f172a' }}>Önder Apartman</h1>
-          <p className="text-body-sm mt-1" style={{ color: '#64748b' }}>Yönetim Sistemi</p>
+          <h1 style={{ fontSize: '32px', fontWeight: '700', color: 'white', letterSpacing: '-1px' }}>Önder Apartman</h1>
+          <p style={{ color: 'rgba(255,255,255,0.8)', marginTop: '8px', fontSize: '16px' }}>Yönetim Sistemi</p>
         </div>
 
-        <div className="card-static p-6">
+        <div className="glass rounded-3xl p-8" style={{ boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
           <div className="flex justify-center mb-6">
-            <div className="flex bg-slate-100 p-1 rounded-lg">
+            <div className="flex rounded-xl" style={{ background: 'rgba(0,0,0,0.1)' }}>
               <button
                 onClick={() => { setIsRegister(false); setError('') }}
-                className="text-body-sm px-4 py-2 rounded-md transition-all"
                 style={{ 
+                  padding: '10px 24px', 
+                  borderRadius: '12px',
                   background: !isRegister ? 'white' : 'transparent',
-                  boxShadow: !isRegister ? '0 1px 2px 0 rgb(0 0 0 / 0.05)' : 'none',
-                  color: !isRegister ? '#6366f1' : '#64748b',
-                  fontWeight: !isRegister ? '600' : '500'
+                  color: !isRegister ? '#0ea5e9' : 'rgba(0,0,0,0.5)',
+                  fontWeight: '600',
+                  fontSize: '14px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  boxShadow: !isRegister ? '0 2px 8px rgba(0,0,0,0.1)' : 'none'
                 }}
               >
                 Giriş
               </button>
               <button
                 onClick={() => { setIsRegister(true); setError('') }}
-                className="text-body-sm px-4 py-2 rounded-md transition-all"
                 style={{ 
+                  padding: '10px 24px', 
+                  borderRadius: '12px',
                   background: isRegister ? 'white' : 'transparent',
-                  boxShadow: isRegister ? '0 1px 2px 0 rgb(0 0 0 / 0.05)' : 'none',
-                  color: isRegister ? '#6366f1' : '#64748b',
-                  fontWeight: isRegister ? '600' : '500'
+                  color: isRegister ? '#0ea5e9' : 'rgba(0,0,0,0.5)',
+                  fontWeight: '600',
+                  fontSize: '14px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  boxShadow: isRegister ? '0 2px 8px rgba(0,0,0,0.1)' : 'none'
                 }}
               >
                 Üye Ol
@@ -106,7 +116,7 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="alert alert-danger mb-5">
+            <div className="alert alert-danger mb-5" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', color: '#dc2626' }}>
               <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -118,34 +128,37 @@ export default function LoginPage() {
             {isRegister && (
               <>
                 <div className="form-group">
-                  <label className="label">Ad Soyad</label>
+                  <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Ad Soyad</label>
                   <input
                     type="text"
                     required
-                    className="input input-lg"
+                    className="input"
                     placeholder="Adınızı girin"
                     value={formData.adSoyad}
                     onChange={(e) => setFormData({ ...formData, adSoyad: e.target.value })}
+                    style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                   />
                 </div>
                 <div className="form-group">
-                  <label className="label">Telefon</label>
+                  <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Telefon</label>
                   <input
                     type="tel"
-                    className="input input-lg"
+                    className="input"
                     placeholder="0555 555 55 55"
                     value={formData.telefon}
                     onChange={(e) => setFormData({ ...formData, telefon: e.target.value })}
+                    style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                   />
                 </div>
                 <div className="form-row">
                   <div className="form-group">
-                    <label className="label">Daire No</label>
+                    <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Daire No</label>
                     <select
                       required
                       className="select"
                       value={formData.daireNo}
                       onChange={(e) => setFormData({ ...formData, daireNo: e.target.value })}
+                      style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                     >
                       <option value="">Seçin</option>
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
@@ -154,11 +167,12 @@ export default function LoginPage() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label className="label">Tip</label>
+                    <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Tip</label>
                     <select
                       className="select"
                       value={formData.tip}
                       onChange={(e) => setFormData({ ...formData, tip: e.target.value })}
+                      style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                     >
                       <option value="owner">Mal Sahibi</option>
                       <option value="tenant">Kiracı</option>
@@ -169,34 +183,45 @@ export default function LoginPage() {
             )}
 
             <div className="form-group">
-              <label className="label">E-posta</label>
+              <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>E-posta</label>
               <input
                 type="email"
                 required
-                className="input input-lg"
+                className="input"
                 placeholder="email@ornek.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
               />
             </div>
 
             <div className="form-group">
-              <label className="label">Şifre</label>
+              <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Şifre</label>
               <input
                 type="password"
                 required
-                className="input input-lg"
+                className="input"
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary btn-lg w-full"
-              style={{ marginTop: '8px' }}
+              className="btn btn-lg w-full"
+              style={{ 
+                marginTop: '12px',
+                background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
+                color: 'white',
+                boxShadow: '0 4px 14px rgba(14, 165, 233, 0.4)',
+                border: 'none',
+                borderRadius: '14px',
+                fontWeight: '600',
+                fontSize: '16px'
+              }}
             >
               {loading ? (
                 <span className="flex items-center gap-2">
@@ -210,7 +235,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="text-center mt-5 text-body-sm" style={{ color: '#64748b' }}>
+          <p className="text-center mt-6" style={{ color: 'rgba(0,0,0,0.5)', fontSize: '14px' }}>
             {isRegister ? 'Zaten hesabınız var mı?' : 'Hesabınız yok mu?'}{' '}
             <button
               onClick={() => {
@@ -218,7 +243,7 @@ export default function LoginPage() {
                 setError('')
               }}
               className="font-semibold cursor-pointer"
-              style={{ color: '#6366f1' }}
+              style={{ color: 'white', fontWeight: '600' }}
             >
               {isRegister ? 'Giriş yapın' : 'Üye olun'}
             </button>
