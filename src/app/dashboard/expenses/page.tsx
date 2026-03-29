@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 
 export default function ExpensesPage() {
-  const supabase = createClient()
+  const [supabase, setSupabase] = useState<any>(null)
   const [user, setUser] = useState<any>(null)
   const [expenses, setExpenses] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -17,6 +17,12 @@ export default function ExpensesPage() {
   })
 
   useEffect(() => {
+    setSupabase(createClient())
+  }, [])
+
+  useEffect(() => {
+    if (!supabase) return
+
     const getData = async () => {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (!authUser) return
@@ -64,7 +70,7 @@ export default function ExpensesPage() {
 
     const { data: users } = await supabase.from('users').select('id')
     if (users) {
-      const debts = users.map(u => ({
+      const debts = users.map((u: any) => ({
         user_id: u.id,
         expense_id: expense.id,
         tutar: perPerson,

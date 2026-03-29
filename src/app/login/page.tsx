@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 
@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
-  const supabase = createClient()
+  const [supabase, setSupabase] = useState<any>(null)
 
   const [formData, setFormData] = useState({
     email: '',
@@ -20,7 +20,12 @@ export default function LoginPage() {
     tip: 'owner',
   })
 
+  useEffect(() => {
+    setSupabase(createClient())
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
+    if (!supabase) return
     e.preventDefault()
     setLoading(true)
     setError('')

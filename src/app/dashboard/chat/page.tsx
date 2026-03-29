@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase'
 import { useEffect, useState, useRef } from 'react'
 
 export default function ChatPage() {
-  const supabase = createClient()
+  const [supabase, setSupabase] = useState<any>(null)
   const [user, setUser] = useState<any>(null)
   const [messages, setMessages] = useState<any[]>([])
   const [newMessage, setNewMessage] = useState('')
@@ -15,6 +15,12 @@ export default function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    setSupabase(createClient())
+  }, [])
+
+  useEffect(() => {
+    if (!supabase) return
+
     const getData = async () => {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (!authUser) return
@@ -36,22 +42,22 @@ export default function ChatPage() {
 
     const channel = supabase
       .channel('messages')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, (payload) => {
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, (payload: any) => {
         if (payload.eventType === 'INSERT') {
           supabase
             .from('messages')
             .select('*, user:users(*)')
             .eq('id', payload.new.id)
             .single()
-            .then(({ data }) => {
+            .then(({ data }: any) => {
               if (data) setMessages((prev) => [...prev, data])
             })
         } else if (payload.eventType === 'UPDATE') {
-          setMessages((prev) =>
+          setMessages((prev: any[]) =>
             prev.map((m) => (m.id === payload.new.id ? { ...m, ...payload.new } : m))
           )
         } else if (payload.eventType === 'DELETE') {
-          setMessages((prev) => prev.filter((m) => m.id !== payload.old.id))
+          setMessages((prev: any[]) => prev.filter((m: any) => m.id !== payload.old.id))
         }
       })
       .subscribe()

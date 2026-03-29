@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 
 export default function DashboardPage() {
-  const supabase = createClient()
+  const [supabase, setSupabase] = useState<any>(null)
   const [user, setUser] = useState<any>(null)
   const [stats, setStats] = useState({
     totalDebt: 0,
@@ -16,6 +16,12 @@ export default function DashboardPage() {
   })
 
   useEffect(() => {
+    setSupabase(createClient())
+  }, [])
+
+  useEffect(() => {
+    if (!supabase) return
+
     const getData = async () => {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (!authUser) return
@@ -32,8 +38,8 @@ export default function DashboardPage() {
         .select('*')
         .eq('user_id', authUser.id)
       
-      const totalDebt = debts?.reduce((sum, d) => sum + Number(d.tutar), 0) || 0
-      const paidDebt = debts?.filter(d => d.odendi).reduce((sum, d) => sum + Number(d.tutar), 0) || 0
+      const totalDebt = debts?.reduce((sum: number, d: any) => sum + Number(d.tutar), 0) || 0
+      const paidDebt = debts?.filter((d: any) => d.odendi).reduce((sum: number, d: any) => sum + Number(d.tutar), 0) || 0
 
       const { count: expenseCount } = await supabase
         .from('expenses')

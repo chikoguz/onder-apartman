@@ -4,13 +4,19 @@ import { createClient } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 
 export default function DebtsPage() {
-  const supabase = createClient()
+  const [supabase, setSupabase] = useState<any>(null)
   const [user, setUser] = useState<any>(null)
   const [debts, setDebts] = useState<any[]>([])
   const [users, setUsers] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setSupabase(createClient())
+  }, [])
+
+  useEffect(() => {
+    if (!supabase) return
+
     const getData = async () => {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (!authUser) return
