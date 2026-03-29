@@ -84,7 +84,7 @@ export default function DebtsPage() {
 
   const isAdmin = user?.role === 'admin'
 
-  const groupedDebts = isAdmin
+  const groupedDebts: Record<string, any[]> | null = isAdmin
     ? debts.reduce((acc, debt) => {
         const key = debt.user_id
         if (!acc[key]) acc[key] = []
