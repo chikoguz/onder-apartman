@@ -63,30 +63,28 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)' }}>
-      <div className="w-full max-w-sm">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #c7d2fe 100%)' }}>
+      <div className="w-full max-w-sm animate-fadeIn">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 mb-5 rounded-2xl shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)' }}>
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="inline-flex items-center justify-center w-14 h-14 mb-5 rounded-2xl shadow-lg" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)' }}>
+            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold" style={{ color: '#334155', letterSpacing: '-0.5px' }}>Önder Apartman</h1>
-          <p style={{ color: '#cbd5e1', marginTop: '6px', fontSize: '15px' }}>Yönetim Sistemi</p>
+          <h1 className="text-h2" style={{ color: '#0f172a' }}>Önder Apartman</h1>
+          <p className="text-body-sm mt-1" style={{ color: '#64748b' }}>Yönetim Sistemi</p>
         </div>
 
-        <div className="card-static p-7">
+        <div className="card-static p-6">
           <div className="flex justify-center mb-6">
-            <div style={{ display: 'flex', background: '#334155', padding: '4px', borderRadius: '10px' }}>
+            <div className="flex bg-slate-100 p-1 rounded-lg">
               <button
                 onClick={() => { setIsRegister(false); setError('') }}
-                className="btn-ghost"
+                className="text-body-sm px-4 py-2 rounded-md transition-all"
                 style={{ 
-                  padding: '8px 20px', 
-                  borderRadius: '8px',
                   background: !isRegister ? 'white' : 'transparent',
-                  boxShadow: !isRegister ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                  color: !isRegister ? '#3b82f6' : '#cbd5e1',
+                  boxShadow: !isRegister ? '0 1px 2px 0 rgb(0 0 0 / 0.05)' : 'none',
+                  color: !isRegister ? '#6366f1' : '#64748b',
                   fontWeight: !isRegister ? '600' : '500'
                 }}
               >
@@ -94,13 +92,11 @@ export default function LoginPage() {
               </button>
               <button
                 onClick={() => { setIsRegister(true); setError('') }}
-                className="btn-ghost"
+                className="text-body-sm px-4 py-2 rounded-md transition-all"
                 style={{ 
-                  padding: '8px 20px', 
-                  borderRadius: '8px',
                   background: isRegister ? 'white' : 'transparent',
-                  boxShadow: isRegister ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                  color: isRegister ? '#3b82f6' : '#cbd5e1',
+                  boxShadow: isRegister ? '0 1px 2px 0 rgb(0 0 0 / 0.05)' : 'none',
+                  color: isRegister ? '#6366f1' : '#64748b',
                   fontWeight: isRegister ? '600' : '500'
                 }}
               >
@@ -110,7 +106,7 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="mb-5 p-3 rounded-xl text-sm flex items-center gap-2" style={{ background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca' }}>
+            <div className="alert alert-danger mb-5">
               <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -121,29 +117,29 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {isRegister && (
               <>
-                <div>
+                <div className="form-group">
                   <label className="label">Ad Soyad</label>
                   <input
                     type="text"
                     required
-                    className="input"
+                    className="input input-lg"
                     placeholder="Adınızı girin"
                     value={formData.adSoyad}
                     onChange={(e) => setFormData({ ...formData, adSoyad: e.target.value })}
                   />
                 </div>
-                <div>
+                <div className="form-group">
                   <label className="label">Telefon</label>
                   <input
                     type="tel"
-                    className="input"
+                    className="input input-lg"
                     placeholder="0555 555 55 55"
                     value={formData.telefon}
                     onChange={(e) => setFormData({ ...formData, telefon: e.target.value })}
                   />
                 </div>
                 <div className="form-row">
-                  <div>
+                  <div className="form-group">
                     <label className="label">Daire No</label>
                     <select
                       required
@@ -157,7 +153,7 @@ export default function LoginPage() {
                       ))}
                     </select>
                   </div>
-                  <div>
+                  <div className="form-group">
                     <label className="label">Tip</label>
                     <select
                       className="select"
@@ -172,24 +168,24 @@ export default function LoginPage() {
               </>
             )}
 
-            <div>
+            <div className="form-group">
               <label className="label">E-posta</label>
               <input
                 type="email"
                 required
-                className="input"
+                className="input input-lg"
                 placeholder="email@ornek.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
-            <div>
+            <div className="form-group">
               <label className="label">Şifre</label>
               <input
                 type="password"
                 required
-                className="input"
+                className="input input-lg"
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -199,7 +195,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary w-full btn-lg"
+              className="btn btn-primary btn-lg w-full"
               style={{ marginTop: '8px' }}
             >
               {loading ? (
@@ -213,21 +209,21 @@ export default function LoginPage() {
               ) : isRegister ? 'Üye Ol' : 'Giriş Yap'}
             </button>
           </form>
-        </div>
 
-        <p className="text-center mt-6" style={{ color: '#cbd5e1', fontSize: '14px' }}>
-          {isRegister ? 'Zaten hesabınız var mı?' : 'Hesabınız yok mu?'}{' '}
-          <button
-            onClick={() => {
-              setIsRegister(!isRegister)
-              setError('')
-            }}
-            className="font-semibold cursor-pointer"
-            style={{ color: '#3b82f6' }}
-          >
-            {isRegister ? 'Giriş yapın' : 'Üye olun'}
-          </button>
-        </p>
+          <p className="text-center mt-5 text-body-sm" style={{ color: '#64748b' }}>
+            {isRegister ? 'Zaten hesabınız var mı?' : 'Hesabınız yok mu?'}{' '}
+            <button
+              onClick={() => {
+                setIsRegister(!isRegister)
+                setError('')
+              }}
+              className="font-semibold cursor-pointer"
+              style={{ color: '#6366f1' }}
+            >
+              {isRegister ? 'Giriş yapın' : 'Üye olun'}
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   )
