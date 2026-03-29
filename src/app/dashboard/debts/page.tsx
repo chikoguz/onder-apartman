@@ -83,15 +83,15 @@ export default function DebtsPage() {
   if (loading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
       </div>
     )
   }
 
   const isAdmin = user?.role === 'admin'
 
-  const groupedDebts: Record<string, any[]> | null = isAdmin
-    ? debts.reduce((acc, debt) => {
+  const groupedDebts = isAdmin
+    ? debts.reduce((acc: Record<string, any[]>, debt) => {
         const key = debt.user_id
         if (!acc[key]) acc[key] = []
         acc[key].push(debt)
@@ -101,54 +101,53 @@ export default function DebtsPage() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
         {isAdmin ? 'Tüm Borçlar' : 'Borçlarım'}
       </h2>
 
       {isAdmin && groupedDebts ? (
-        <div className="space-y-6">
+        <div className="space-y-4">
           {Object.entries(groupedDebts).map(([userId, userDebts]) => {
-            const total = userDebts.reduce((sum, d) => sum + Number(d.tutar), 0)
-            const paid = userDebts.filter(d => d.odendi).reduce((sum, d) => sum + Number(d.tutar), 0)
+            const total = userDebts.reduce((sum: number, d: any) => sum + Number(d.tutar), 0)
+            const paid = userDebts.filter((d: any) => d.odendi).reduce((sum: number, d: any) => sum + Number(d.tutar), 0)
             const pending = total - paid
 
             return (
-              <div key={userId} className="bg-white rounded-xl border overflow-hidden">
-                <div className="bg-gray-50 px-4 py-3 border-b flex justify-between items-center">
+              <div key={userId} className="card overflow-hidden">
+                <div className="bg-gray-50 px-4 py-3 border-b flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                   <div>
-                    <span className="font-semibold">{getUserName(userId)}</span>
+                    <span className="font-semibold text-gray-900">{getUserName(userId)}</span>
                   </div>
-                  <div className="text-sm">
-                    <span className="text-green-600">Ödenen: {paid.toFixed(2)} TL</span>
-                    <span className="mx-2">|</span>
-                    <span className="text-red-600">Bekleyen: {pending.toFixed(2)} TL</span>
+                  <div className="flex gap-4 text-sm">
+                    <span className="text-green-600 font-medium">Ödenen: {paid.toFixed(2)} TL</span>
+                    <span className="text-red-600 font-medium">Bekleyen: {pending.toFixed(2)} TL</span>
                   </div>
                 </div>
                 <div className="divide-y">
-                  {userDebts.map((debt) => (
+                  {userDebts.map((debt: any) => (
                     <div
                       key={debt.id}
-                      className="p-4 flex justify-between items-center"
+                      className="p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
                     >
-                      <div>
-                        <p className="font-medium">{debt.expense?.baslik}</p>
+                      <div className="flex-1">
+                        <p className="font-medium text-gray-900">{debt.expense?.baslik}</p>
                         <p className="text-sm text-gray-500">
                           {debt.expense?.aciklama || '-'}
                         </p>
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="text-right">
-                          <p className="font-bold">{Number(debt.tutar).toFixed(2)} TL</p>
-                          <p className="text-xs text-gray-500">
+                          <p className="font-bold text-gray-900">{Number(debt.tutar).toFixed(2)} TL</p>
+                          <p className="text-xs text-gray-400">
                             {new Date(debt.created_at).toLocaleDateString('tr-TR')}
                           </p>
                         </div>
                         <button
                           onClick={() => togglePaid(debt.id, debt.odendi)}
-                          className={`px-3 py-1 rounded text-sm ${
+                          className={`px-4 py-2 rounded-xl text-sm font-medium ${
                             debt.odendi
-                              ? 'bg-green-100 text-green-700'
-                              : 'bg-yellow-100 text-yellow-700'
+                              ? 'badge badge-success'
+                              : 'badge badge-warning'
                           }`}
                         >
                           {debt.odendi ? 'Ödendi' : 'Ödenmedi'}
@@ -163,13 +162,10 @@ export default function DebtsPage() {
         </div>
       ) : (
         <div className="space-y-3">
-          {debts.map((debt) => (
-            <div
-              key={debt.id}
-              className="bg-white rounded-xl border p-4 flex justify-between items-center"
-            >
-              <div>
-                <h4 className="font-semibold">{debt.expense?.baslik}</h4>
+          {debts.map((debt: any) => (
+            <div key={debt.id} className="card p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+              <div className="flex-1">
+                <h4 className="font-semibold text-gray-900">{debt.expense?.baslik}</h4>
                 {debt.expense?.aciklama && (
                   <p className="text-sm text-gray-500">{debt.expense?.aciklama}</p>
                 )}
@@ -178,21 +174,22 @@ export default function DebtsPage() {
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-xl font-bold text-gray-800">
+                <p className="text-xl font-bold text-gray-900">
                   {Number(debt.tutar).toFixed(2)} TL
                 </p>
-                <span
-                  className={`text-sm ${
-                    debt.odendi ? 'text-green-600' : 'text-red-600'
-                  }`}
-                >
+                <span className={`badge ${debt.odendi ? 'badge-success' : 'badge-danger'}`}>
                   {debt.odendi ? 'Ödendi' : 'Ödenmedi'}
                 </span>
               </div>
             </div>
           ))}
           {debts.length === 0 && (
-            <p className="text-center text-gray-500 py-8">Borç yok</p>
+            <div className="card p-12 text-center">
+              <svg className="w-16 h-16 mx-auto text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-gray-500 mt-4">Borç bulunmuyor</p>
+            </div>
           )}
         </div>
       )}

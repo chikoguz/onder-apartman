@@ -71,80 +71,120 @@ export default function DashboardPage() {
     {
       title: 'Toplam Borç',
       value: `${stats.totalDebt.toFixed(2)} TL`,
-      color: 'bg-red-50 border-red-200',
-      textColor: 'text-red-700',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+      color: 'from-red-500 to-red-600',
+      bg: 'bg-red-50',
     },
     {
       title: 'Ödenen',
       value: `${stats.paidDebt.toFixed(2)} TL`,
-      color: 'bg-green-50 border-green-200',
-      textColor: 'text-green-700',
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+      color: 'from-green-500 to-green-600',
+      bg: 'bg-green-50',
     },
     {
       title: 'Bekleyen',
       value: `${stats.pendingDebt.toFixed(2)} TL`,
-      color: 'bg-yellow-50 border-yellow-200',
-      textColor: 'text-yellow-700',
+      icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+      color: 'from-yellow-500 to-yellow-600',
+      bg: 'bg-yellow-50',
     },
     {
-      title: 'Gider Sayısı',
+      title: 'Giderler',
       value: stats.expenseCount,
-      color: 'bg-blue-50 border-blue-200',
-      textColor: 'text-blue-700',
+      icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
+      color: 'from-blue-500 to-blue-600',
+      bg: 'bg-blue-50',
     },
     {
       title: 'Etkinlik',
       value: stats.eventCount,
-      color: 'bg-purple-50 border-purple-200',
-      textColor: 'text-purple-700',
+      icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+      color: 'from-purple-500 to-purple-600',
+      bg: 'bg-purple-50',
     },
     {
-      title: 'Mesaj',
+      title: 'Mesajlar',
       value: stats.messageCount,
-      color: 'bg-indigo-50 border-indigo-200',
-      textColor: 'text-indigo-700',
+      icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+      color: 'from-indigo-500 to-indigo-600',
+      bg: 'bg-indigo-50',
     },
   ]
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">Hoş Geldin, {user.ad_soyad}</h2>
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-900">Hoş Geldin, {user.ad_soyad}</h2>
+        <p className="text-gray-500 mt-1">Daire {user.daire_no} - {user.tip === 'owner' ? 'Mal Sahibi' : 'Kiracı'}</p>
+      </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {cards.map((card, index) => (
-          <div
-            key={index}
-            className={`p-6 rounded-xl border ${card.color}`}
-          >
-            <p className="text-sm text-gray-600 mb-1">{card.title}</p>
-            <p className={`text-2xl font-bold ${card.textColor}`}>{card.value}</p>
+          <div key={index} className="card p-5">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-sm text-gray-500">{card.title}</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">{card.value}</p>
+              </div>
+              <div className={`p-3 rounded-xl ${card.bg}`}>
+                <svg className={`w-6 h-6 bg-gradient-to-br ${card.color} text-white rounded-lg p-1`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={card.icon} />
+                </svg>
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-8 bg-white rounded-xl border p-6">
+      <div className="mt-6 card p-6">
         <h3 className="text-lg font-semibold mb-4">Hızlı İşlemler</h3>
         <div className="flex flex-wrap gap-3">
           <a
             href="/dashboard/expenses"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            className="btn btn-primary"
           >
-            Gider Ekle
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Yeni Gider
           </a>
           <a
             href="/dashboard/chat"
-            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+            className="btn btn-secondary"
           >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
             Mesaj Gönder
           </a>
           <a
             href="/dashboard/events"
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+            className="btn btn-secondary"
           >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
             Etkinlik Oluştur
           </a>
         </div>
       </div>
+
+      {user.role === 'admin' && (
+        <div className="mt-4 card p-6 border-l-4 border-blue-500">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900">Admin Panel</p>
+              <p className="text-sm text-gray-500">Gider ekleme ve borç yönetimi yetkiniz var</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
