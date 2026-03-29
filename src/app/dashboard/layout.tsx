@@ -58,9 +58,11 @@ export default function DashboardLayout({
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: '#f8fafc' }}>
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" style={{ borderColor: '#3b82f6', borderTopColor: 'transparent' }}></div>
-          <p style={{ color: '#6b7280' }}>Yükleniyor...</p>
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative">
+            <div className="w-12 h-12 border-4 border-slate-200 border-t-transparent rounded-full animate-spin" style={{ borderTopColor: '#0ea5e9' }}></div>
+          </div>
+          <p style={{ color: '#64748b', fontSize: '15px' }}>Yükleniyor...</p>
         </div>
       </div>
     )
@@ -68,27 +70,27 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#f8fafc' }}>
-      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: '#e5e7eb' }}>
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex justify-between items-center h-14">
+      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: '#e2e8f0', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.05)' }}>
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-blue-500 rounded-xl flex items-center justify-center" style={{ background: '#3b82f6' }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md" style={{ background: 'linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)' }}>
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
               <div>
-                <h1 className="text-base font-bold" style={{ color: '#1f2937' }}>Önder Apartman</h1>
+                <h1 className="text-lg font-bold" style={{ color: '#0f172a', letterSpacing: '-0.3px' }}>Önder Apartman</h1>
                 {user && (
-                  <p className="text-xs" style={{ color: '#6b7280' }}>Daire {user.daire_no} • {user.ad_soyad}</p>
+                  <p className="text-xs" style={{ color: '#64748b' }}>Daire {user.daire_no} • {user.ad_soyad}</p>
                 )}
               </div>
             </div>
             
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 rounded-lg active:bg-gray-100"
-              style={{ color: '#6b7280' }}
+              className="p-2.5 rounded-xl active:bg-slate-100"
+              style={{ color: '#64748b' }}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -98,7 +100,7 @@ export default function DashboardLayout({
         </div>
         
         {menuOpen && (
-          <div className="lg:hidden border-t" style={{ borderColor: '#e5e7eb' }}>
+          <div className="lg:hidden border-t" style={{ borderColor: '#e2e8f0', background: 'white' }}>
             <nav className="p-3 space-y-1">
               {navItems.map((item) => (
                 <a
@@ -113,10 +115,11 @@ export default function DashboardLayout({
                   {item.label}
                 </a>
               ))}
+              <div className="divider my-2"></div>
               <button
                 onClick={handleLogout}
                 className="nav-item w-full text-left"
-                style={{ color: '#dc2626' }}
+                style={{ color: '#ef4444' }}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -128,8 +131,8 @@ export default function DashboardLayout({
         )}
       </header>
 
-      <div className="flex-1 flex max-w-5xl mx-auto w-full">
-        <aside className="hidden lg:block w-56 p-4">
+      <div className="flex-1 flex max-w-6xl mx-auto w-full">
+        <aside className="hidden lg:block w-60 p-4">
           <nav className="space-y-1 sticky top-20">
             {navItems.map((item) => (
               <a
@@ -143,10 +146,11 @@ export default function DashboardLayout({
                 {item.label}
               </a>
             ))}
+            <div className="divider my-3"></div>
             <button
               onClick={handleLogout}
               className="nav-item w-full text-left"
-              style={{ color: '#dc2626' }}
+              style={{ color: '#ef4444' }}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -156,7 +160,7 @@ export default function DashboardLayout({
           </nav>
         </aside>
 
-        <main className="flex-1 p-4 lg:p-5">{children}</main>
+        <main className="flex-1 p-4 lg:p-6">{children}</main>
       </div>
     </div>
   )
