@@ -143,7 +143,7 @@ export default function DashboardPage() {
           <div key={index} className="stat-card" style={{ background: card.bg }}>
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm font-medium" style={{ color: '#64748b' }}>{card.title}</p>
+                <p className="text-sm font-medium" style={{ color: '#cbd5e1' }}>{card.title}</p>
                 <p className="text-2xl font-bold mt-1" style={{ color: card.color }}>{card.value}</p>
               </div>
               <div className="icon-box" style={{ background: card.iconBg }}>
@@ -180,7 +180,7 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="font-semibold" style={{ color: '#0f172a' }}>Admin Panel</p>
-              <p className="text-sm" style={{ color: '#64748b' }}>Gider ekleme ve borç yönetimi yetkiniz var</p>
+              <p className="text-sm" style={{ color: '#cbd5e1' }}>Gider ekleme ve borç yönetimi yetkiniz var</p>
             </div>
           </div>
         </div>

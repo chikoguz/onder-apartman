@@ -63,7 +63,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}>
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)' }}>
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 mb-5 rounded-2xl shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)' }}>
@@ -71,13 +71,13 @@ export default function LoginPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold" style={{ color: '#0f172a', letterSpacing: '-0.5px' }}>Önder Apartman</h1>
-          <p style={{ color: '#64748b', marginTop: '6px', fontSize: '15px' }}>Yönetim Sistemi</p>
+          <h1 className="text-2xl font-bold" style={{ color: '#334155', letterSpacing: '-0.5px' }}>Önder Apartman</h1>
+          <p style={{ color: '#cbd5e1', marginTop: '6px', fontSize: '15px' }}>Yönetim Sistemi</p>
         </div>
 
         <div className="card-static p-7">
           <div className="flex justify-center mb-6">
-            <div style={{ display: 'flex', background: '#f1f5f9', padding: '4px', borderRadius: '10px' }}>
+            <div style={{ display: 'flex', background: '#334155', padding: '4px', borderRadius: '10px' }}>
               <button
                 onClick={() => { setIsRegister(false); setError('') }}
                 className="btn-ghost"
@@ -86,7 +86,7 @@ export default function LoginPage() {
                   borderRadius: '8px',
                   background: !isRegister ? 'white' : 'transparent',
                   boxShadow: !isRegister ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                  color: !isRegister ? '#3b82f6' : '#64748b',
+                  color: !isRegister ? '#3b82f6' : '#cbd5e1',
                   fontWeight: !isRegister ? '600' : '500'
                 }}
               >
@@ -100,7 +100,7 @@ export default function LoginPage() {
                   borderRadius: '8px',
                   background: isRegister ? 'white' : 'transparent',
                   boxShadow: isRegister ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                  color: isRegister ? '#3b82f6' : '#64748b',
+                  color: isRegister ? '#3b82f6' : '#cbd5e1',
                   fontWeight: isRegister ? '600' : '500'
                 }}
               >
@@ -215,7 +215,7 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center mt-6" style={{ color: '#64748b', fontSize: '14px' }}>
+        <p className="text-center mt-6" style={{ color: '#cbd5e1', fontSize: '14px' }}>
           {isRegister ? 'Zaten hesabınız var mı?' : 'Hesabınız yok mu?'}{' '}
           <button
             onClick={() => {
