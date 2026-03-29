@@ -63,29 +63,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50"></div>
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-30"></div>
-      
-      <div className="relative w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#f8fafc' }}>
+      <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl mb-4 shadow-lg">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-500 rounded-2xl mb-4" style={{ background: '#3b82f6' }}>
+            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Önder Apartman</h1>
-          <p className="text-gray-500 mt-2">Yönetim Sistemi</p>
+          <h1 className="text-2xl font-bold" style={{ color: '#1f2937' }}>Önder Apartman</h1>
+          <p style={{ color: '#6b7280', marginTop: '4px' }}>Yönetim Sistemi</p>
         </div>
 
-        <div className="card p-8">
-          <h2 className="text-xl font-semibold text-center mb-6">
+        <div className="card p-6">
+          <h2 className="text-lg font-semibold text-center mb-5" style={{ color: '#1f2937' }}>
             {isRegister ? 'Yeni Üye Ol' : 'Hoş Geldiniz'}
           </h2>
 
           {error && (
-            <div className="mb-4 p-4 bg-red-50 border border-red-100 text-red-600 rounded-xl text-sm">
+            <div className="mb-4 p-3 rounded-xl text-sm" style={{ background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca' }}>
               {error}
             </div>
           )}
@@ -114,7 +110,7 @@ export default function LoginPage() {
                     onChange={(e) => setFormData({ ...formData, telefon: e.target.value })}
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="form-row">
                   <div>
                     <label className="label">Daire No</label>
                     <select
@@ -177,22 +173,23 @@ export default function LoginPage() {
                 <span className="flex items-center gap-2">
                   <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                   </svg>
-                  Bekleyin...
+                  Bekleyin
                 </span>
               ) : isRegister ? 'Üye Ol' : 'Giriş Yap'}
             </button>
           </form>
 
-          <p className="text-center mt-6 text-gray-500">
+          <p className="text-center mt-5" style={{ color: '#6b7280' }}>
             {isRegister ? 'Zaten üye misiniz?' : 'Hesabınız yok mu?'}{' '}
             <button
               onClick={() => {
                 setIsRegister(!isRegister)
                 setError('')
               }}
-              className="text-blue-600 font-semibold hover:underline"
+              className="font-semibold cursor-pointer"
+              style={{ color: '#3b82f6' }}
             >
               {isRegister ? 'Giriş yap' : 'Üye ol'}
             </button>

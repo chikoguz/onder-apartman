@@ -57,37 +57,38 @@ export default function DashboardLayout({
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-500">Yükleniyor...</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#f8fafc' }}>
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" style={{ borderColor: '#3b82f6', borderTopColor: 'transparent' }}></div>
+          <p style={{ color: '#6b7280' }}>Yükleniyor...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <header className="bg-white border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
+    <div className="min-h-screen flex flex-col" style={{ background: '#f8fafc' }}>
+      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: '#e5e7eb' }}>
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex justify-between items-center h-14">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+              <div className="w-9 h-9 bg-blue-500 rounded-xl flex items-center justify-center" style={{ background: '#3b82f6' }}>
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">Önder Apartman</h1>
+                <h1 className="text-base font-bold" style={{ color: '#1f2937' }}>Önder Apartman</h1>
                 {user && (
-                  <p className="text-xs text-gray-500">Daire {user.daire_no} • {user.ad_soyad}</p>
+                  <p className="text-xs" style={{ color: '#6b7280' }}>Daire {user.daire_no} • {user.ad_soyad}</p>
                 )}
               </div>
             </div>
             
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+              className="p-2 rounded-lg active:bg-gray-100"
+              style={{ color: '#6b7280' }}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -97,17 +98,13 @@ export default function DashboardLayout({
         </div>
         
         {menuOpen && (
-          <div className="lg:hidden border-t bg-white">
-            <nav className="p-4 space-y-1">
+          <div className="lg:hidden border-t" style={{ borderColor: '#e5e7eb' }}>
+            <nav className="p-3 space-y-1">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl ${
-                    pathname === item.href
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-600 hover:bg-gray-50'
-                  }`}
+                  className={`nav-item ${pathname === item.href ? 'active' : ''}`}
                   onClick={() => setMenuOpen(false)}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,7 +115,8 @@ export default function DashboardLayout({
               ))}
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-600 hover:bg-red-50"
+                className="nav-item w-full text-left"
+                style={{ color: '#dc2626' }}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -130,18 +128,14 @@ export default function DashboardLayout({
         )}
       </header>
 
-      <div className="flex-1 flex max-w-7xl mx-auto w-full">
-        <aside className="hidden lg:block w-64 p-4">
+      <div className="flex-1 flex max-w-5xl mx-auto w-full">
+        <aside className="hidden lg:block w-56 p-4">
           <nav className="space-y-1 sticky top-20">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl ${
-                  pathname === item.href
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`nav-item ${pathname === item.href ? 'active' : ''}`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
@@ -151,7 +145,8 @@ export default function DashboardLayout({
             ))}
             <button
               onClick={handleLogout}
-              className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-600 hover:bg-red-50"
+              className="nav-item w-full text-left"
+              style={{ color: '#dc2626' }}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -161,7 +156,7 @@ export default function DashboardLayout({
           </nav>
         </aside>
 
-        <main className="flex-1 p-4 lg:p-6">{children}</main>
+        <main className="flex-1 p-4 lg:p-5">{children}</main>
       </div>
     </div>
   )
