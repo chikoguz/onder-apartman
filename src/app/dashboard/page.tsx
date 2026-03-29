@@ -103,7 +103,7 @@ export default function DashboardPage() {
       bg: '#eff6ff', 
       color: '#2563eb',
       iconBg: 'rgba(14, 165, 233, 0.1)',
-      iconColor: '#0ea5e9'
+      iconColor: '#3b82f6'
     },
     { 
       title: 'Etkinlik', 
@@ -134,7 +134,7 @@ export default function DashboardPage() {
   return (
     <div>
       <div className="page-header">
-        <h2 className="page-title">Hoş Geldin, <span style={{ color: '#0ea5e9' }}>{user.ad_soyad}</span></h2>
+        <h2 className="page-title">Hoş Geldin, <span style={{ color: '#3b82f6' }}>{user.ad_soyad}</span></h2>
         <p className="page-subtitle">Daire {user.daire_no} • {user.tip === 'owner' ? 'Mal Sahibi' : 'Kiracı'}</p>
       </div>
       
@@ -171,7 +171,7 @@ export default function DashboardPage() {
       </div>
 
       {user.role === 'admin' && (
-        <div className="mt-6 card-static p-5" style={{ borderLeft: '4px solid #0ea5e9', background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, white 100%)' }}>
+        <div className="mt-6 card-static p-5" style={{ borderLeft: '4px solid #3b82f6', background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, white 100%)' }}>
           <div className="flex items-center gap-4">
             <div className="icon-box icon-box-primary">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

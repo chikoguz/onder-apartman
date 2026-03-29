@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #0ea5e9;
-  --primary-dark: #0284c7;
-  --primary-light: #38bdf8;
-  --accent: #6366f1;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #60a5fa;
+  --accent: #8b5cf6;
+  
   --success: #22c55e;
   --warning: #f59e0b;
   --danger: #ef4444;
   
-  --bg-main: #f8fafc;
+  --bg-main: #f1f5f9;
   --bg-card: #ffffff;
-  --bg-hover: #f1f5f9;
+  --bg-hover: #f8fafc;
   --bg-input: #f8fafc;
   
-  --text-primary: #0f172a;
+  --text-primary: #1e293b;
   --text-secondary: #475569;
   --text-muted: #94a3b8;
   --text-inverse: #ffffff;
@@ -26,7 +27,6 @@
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   
   --radius-sm: 8px;
   --radius: 12px;
@@ -34,7 +34,6 @@
   --radius-xl: 24px;
   
   --font-display: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 * {
@@ -50,7 +49,7 @@ html {
 body {
   background: var(--bg-main);
   color: var(--text-primary);
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   line-height: 1.6;
   min-height: 100vh;
   margin: 0;
@@ -59,9 +58,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.3;
+  color: var(--text-primary);
 }
 
 .app-container {
@@ -80,7 +79,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .card:hover {
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
 }
 
 .card-static {
@@ -119,14 +117,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: var(--text-inverse);
-  box-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.39);
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.4);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
 }
 
 .btn-secondary {
@@ -150,15 +148,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-.btn-danger {
-  background: var(--danger);
-  color: white;
-}
-
-.btn-danger:hover {
-  background: #dc2626;
-}
-
 .input {
   width: 100%;
   padding: 14px 16px;
@@ -173,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   background: white;
 }
 
@@ -196,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .select:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .label {
@@ -218,28 +207,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .badge-success {
-  background: rgba(34, 197, 94, 0.1);
+  background: rgba(34, 197, 94, 0.12);
   color: #16a34a;
 }
 
 .badge-warning {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(245, 158, 11, 0.12);
   color: #d97706;
 }
 
 .badge-danger {
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(239, 68, 68, 0.12);
   color: #dc2626;
 }
 
 .badge-primary {
-  background: rgba(14, 165, 233, 0.1);
-  color: var(--primary-dark);
-}
-
-.badge-purple {
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--accent);
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
 }
 
 .nav-item {
@@ -261,7 +245,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-item.active {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0.05) 100%);
+  background: rgba(59, 130, 246, 0.1);
   color: var(--primary);
   font-weight: 600;
 }
@@ -279,7 +263,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .message-sent {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   border-bottom-right-radius: 4px;
 }
@@ -306,7 +290,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
-  letter-spacing: -0.5px;
 }
 
 .page-subtitle {
@@ -336,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 72px;
   color: var(--text-muted);
   margin-bottom: 20px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .empty-state h3 {
@@ -370,10 +353,10 @@ h1, h2, h3, h4, h5, h6 {
 .form-info {
   padding: 12px 16px;
   border-radius: var(--radius);
-  background: rgba(14, 165, 233, 0.08);
-  border: 1px solid rgba(14, 165, 233, 0.2);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   font-size: 14px;
-  color: var(--primary-dark);
+  color: #1d4ed8;
 }
 
 .divider {
@@ -386,7 +369,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -422,28 +405,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .icon-box-primary {
-  background: rgba(14, 165, 233, 0.1);
-  color: var(--primary);
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
 }
 
 .icon-box-success {
   background: rgba(34, 197, 94, 0.1);
-  color: var(--success);
+  color: #22c55e;
 }
 
 .icon-box-warning {
   background: rgba(245, 158, 11, 0.1);
-  color: var(--warning);
+  color: #f59e0b;
 }
 
 .icon-box-danger {
   background: rgba(239, 68, 68, 0.1);
-  color: var(--danger);
+  color: #ef4444;
 }
 
 .icon-box-purple {
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--accent);
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
 }
 
 .list-item {
@@ -463,45 +446,6 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-hover);
 }
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 100;
-  animation: fadeIn 0.2s ease;
-}
-
-.modal {
-  background: var(--bg-card);
-  border-radius: var(--radius-xl);
-  width: 100%;
-  max-width: 480px;
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: slideUp 0.3s ease;
-}
-
-.modal-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--border);
-}
-
-.modal-body {
-  padding: 24px;
-}
-
-.modal-footer {
-  padding: 16px 24px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -518,10 +462,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-spin {
   animation: spin 1s linear infinite;
-}
-
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @media (max-width: 640px) {
@@ -609,6 +549,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background: rgba(14, 165, 233, 0.2);
+  background: rgba(59, 130, 246, 0.2);
   color: var(--text-primary);
 }
