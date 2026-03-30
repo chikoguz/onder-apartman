@@ -63,34 +63,42 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="hero-gradient min-h-screen flex items-center justify-center p-6">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#f9fafb' }}>
       <div className="w-full max-w-sm animate-slideUp">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 mb-5 glass rounded-2xl" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div style={{ 
+            width: '56px', 
+            height: '56px', 
+            margin: '0 auto 16px',
+            borderRadius: '12px',
+            background: '#2563eb',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <svg style={{ width: '28px', height: '28px', color: 'white' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
-          <h1 style={{ fontSize: '32px', fontWeight: '700', color: 'white', letterSpacing: '-1px' }}>Önder Apartman</h1>
-          <p style={{ color: 'rgba(255,255,255,0.8)', marginTop: '8px', fontSize: '16px' }}>Yönetim Sistemi</p>
+          <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#111827' }}>Önder Apartman</h1>
+          <p style={{ color: '#6b7280', marginTop: '4px', fontSize: '14px' }}>Yönetim Sistemi</p>
         </div>
 
-        <div className="glass rounded-3xl p-8" style={{ boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
-          <div className="flex justify-center mb-6">
-            <div className="flex rounded-xl" style={{ background: 'rgba(0,0,0,0.1)' }}>
+        <div className="card" style={{ padding: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', background: '#f3f4f6', padding: '4px', borderRadius: '8px' }}>
               <button
                 onClick={() => { setIsRegister(false); setError('') }}
                 style={{ 
-                  padding: '10px 24px', 
-                  borderRadius: '12px',
+                  padding: '8px 20px', 
+                  borderRadius: '6px',
                   background: !isRegister ? 'white' : 'transparent',
-                  color: !isRegister ? '#0ea5e9' : 'rgba(0,0,0,0.5)',
+                  color: !isRegister ? '#2563eb' : '#6b7280',
                   fontWeight: '600',
                   fontSize: '14px',
                   border: 'none',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: !isRegister ? '0 2px 8px rgba(0,0,0,0.1)' : 'none'
+                  boxShadow: !isRegister ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
                 }}
               >
                 Giriş
@@ -98,16 +106,15 @@ export default function LoginPage() {
               <button
                 onClick={() => { setIsRegister(true); setError('') }}
                 style={{ 
-                  padding: '10px 24px', 
-                  borderRadius: '12px',
+                  padding: '8px 20px', 
+                  borderRadius: '6px',
                   background: isRegister ? 'white' : 'transparent',
-                  color: isRegister ? '#0ea5e9' : 'rgba(0,0,0,0.5)',
+                  color: isRegister ? '#2563eb' : '#6b7280',
                   fontWeight: '600',
                   fontSize: '14px',
                   border: 'none',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isRegister ? '0 2px 8px rgba(0,0,0,0.1)' : 'none'
+                  boxShadow: isRegister ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
                 }}
               >
                 Üye Ol
@@ -116,19 +123,19 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="alert alert-danger mb-5" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', color: '#dc2626' }}>
-              <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="alert alert-danger" style={{ marginBottom: '16px' }}>
+              <svg style={{ width: '20px', height: '20px', flexShrink: 0 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit}>
             {isRegister && (
               <>
                 <div className="form-group">
-                  <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Ad Soyad</label>
+                  <label className="label">Ad Soyad</label>
                   <input
                     type="text"
                     required
@@ -136,29 +143,26 @@ export default function LoginPage() {
                     placeholder="Adınızı girin"
                     value={formData.adSoyad}
                     onChange={(e) => setFormData({ ...formData, adSoyad: e.target.value })}
-                    style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                   />
                 </div>
                 <div className="form-group">
-                  <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Telefon</label>
+                  <label className="label">Telefon</label>
                   <input
                     type="tel"
                     className="input"
                     placeholder="0555 555 55 55"
                     value={formData.telefon}
                     onChange={(e) => setFormData({ ...formData, telefon: e.target.value })}
-                    style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                   />
                 </div>
                 <div className="form-row">
                   <div className="form-group">
-                    <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Daire No</label>
+                    <label className="label">Daire No</label>
                     <select
                       required
                       className="select"
                       value={formData.daireNo}
                       onChange={(e) => setFormData({ ...formData, daireNo: e.target.value })}
-                      style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                     >
                       <option value="">Seçin</option>
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
@@ -167,12 +171,11 @@ export default function LoginPage() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Tip</label>
+                    <label className="label">Tip</label>
                     <select
                       className="select"
                       value={formData.tip}
                       onChange={(e) => setFormData({ ...formData, tip: e.target.value })}
-                      style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
                     >
                       <option value="owner">Mal Sahibi</option>
                       <option value="tenant">Kiracı</option>
@@ -183,7 +186,7 @@ export default function LoginPage() {
             )}
 
             <div className="form-group">
-              <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>E-posta</label>
+              <label className="label">E-posta</label>
               <input
                 type="email"
                 required
@@ -191,12 +194,11 @@ export default function LoginPage() {
                 placeholder="email@ornek.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
               />
             </div>
 
             <div className="form-group">
-              <label className="label" style={{ color: 'rgba(0,0,0,0.6)' }}>Şifre</label>
+              <label className="label">Şifre</label>
               <input
                 type="password"
                 required
@@ -204,30 +206,20 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                style={{ background: 'rgba(255,255,255,0.8)', border: '1.5px solid rgba(0,0,0,0.1)' }}
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-lg w-full"
-              style={{ 
-                marginTop: '12px',
-                background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
-                color: 'white',
-                boxShadow: '0 4px 14px rgba(14, 165, 233, 0.4)',
-                border: 'none',
-                borderRadius: '14px',
-                fontWeight: '600',
-                fontSize: '16px'
-              }}
+              className="btn btn-primary btn-lg w-full"
+              style={{ marginTop: '8px' }}
             >
               {loading ? (
-                <span className="flex items-center gap-2">
-                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <svg className="animate-spin" style={{ width: '20px', height: '20px' }} viewBox="0 0 24 24">
+                    <circle style={{ opacity: 0.25 }} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                    <path style={{ opacity: 0.75 }} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                   </svg>
                   Bekleyin...
                 </span>
@@ -235,15 +227,14 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="text-center mt-6" style={{ color: 'rgba(0,0,0,0.5)', fontSize: '14px' }}>
+          <p style={{ textAlign: 'center', marginTop: '20px', color: '#6b7280', fontSize: '14px' }}>
             {isRegister ? 'Zaten hesabınız var mı?' : 'Hesabınız yok mu?'}{' '}
             <button
               onClick={() => {
                 setIsRegister(!isRegister)
                 setError('')
               }}
-              className="font-semibold cursor-pointer"
-              style={{ color: 'white', fontWeight: '600' }}
+              style={{ color: '#2563eb', fontWeight: '600', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               {isRegister ? 'Giriş yapın' : 'Üye olun'}
             </button>

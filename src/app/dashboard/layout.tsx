@@ -57,46 +57,36 @@ export default function DashboardLayout({
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-full animate-spin" style={{ border: '3px solid #e0f2fe', borderTopColor: '#0ea5e9' }}></div>
-          <p style={{ color: '#64748b', fontSize: '15px', fontWeight: '500' }}>Yükleniyor...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#f9fafb' }}>
+        <div className="animate-spin" style={{ width: '40px', height: '40px', border: '3px solid #e5e7eb', borderTopColor: '#2563eb', borderRadius: '50%' }}></div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: '#f8fafc' }}>
-      <header className="glass sticky top-0 z-50" style={{ borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
-        <div className="max-w-6xl mx-auto px-5">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.3)' }}>
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div className="min-h-screen flex flex-col" style={{ background: '#f9fafb' }}>
+      <header style={{ background: 'white', borderBottom: '1px solid #e5e7eb', position: 'sticky', top: 0, zIndex: 50 }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '64px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg style={{ width: '20px', height: '20px', color: 'white' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
               <div>
-                <h1 style={{ fontSize: '18px', fontWeight: '700', color: '#0f172a', letterSpacing: '-0.3px' }}>Önder Apartman</h1>
+                <h1 style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>Önder Apartman</h1>
                 {user && (
-                  <p style={{ fontSize: '12px', color: '#64748b' }}>Daire {user.daire_no} • {user.ad_soyad}</p>
+                  <p style={{ fontSize: '12px', color: '#6b7280' }}>Daire {user.daire_no} • {user.ad_soyad}</p>
                 )}
               </div>
             </div>
             
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              style={{ 
-                padding: '10px', 
-                borderRadius: '12px',
-                background: menuOpen ? 'rgba(0,0,0,0.05)' : 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#64748b'
-              }}
+              style={{ padding: '8px', borderRadius: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#6b7280' }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg style={{ width: '24px', height: '24px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
               </svg>
             </button>
@@ -104,8 +94,8 @@ export default function DashboardLayout({
         </div>
         
         {menuOpen && (
-          <div className="lg:hidden" style={{ borderTop: '1px solid rgba(0,0,0,0.06)', background: 'white' }}>
-            <nav className="p-4 space-y-1">
+          <div className="lg:hidden" style={{ borderTop: '1px solid #e5e7eb', background: 'white' }}>
+            <nav style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
               {navItems.map((item) => (
                 <a
                   key={item.href}
@@ -122,8 +112,8 @@ export default function DashboardLayout({
               <div className="divider"></div>
               <button
                 onClick={handleLogout}
-                className="nav-item w-full text-left"
-                style={{ color: '#ef4444' }}
+                className="nav-item"
+                style={{ color: '#dc2626', width: '100%', textAlign: 'left' }}
               >
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -135,9 +125,9 @@ export default function DashboardLayout({
         )}
       </header>
 
-      <div className="flex-1 flex max-w-6xl mx-auto w-full">
-        <aside className="hidden lg:block w-64 p-5">
-          <nav className="space-y-1 sticky top-24">
+      <div style={{ flex: 1, display: 'flex', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+        <aside className="hidden lg:block" style={{ width: '240px', padding: '20px' }}>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', position: 'sticky', top: '80px' }}>
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -153,8 +143,8 @@ export default function DashboardLayout({
             <div className="divider"></div>
             <button
               onClick={handleLogout}
-              className="nav-item w-full text-left"
-              style={{ color: '#ef4444' }}
+              className="nav-item"
+              style={{ color: '#dc2626', width: '100%', textAlign: 'left' }}
             >
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -164,7 +154,7 @@ export default function DashboardLayout({
           </nav>
         </aside>
 
-        <main className="flex-1 p-5 lg:p-6">{children}</main>
+        <main style={{ flex: 1, padding: '20px' }}>{children}</main>
       </div>
     </div>
   )
